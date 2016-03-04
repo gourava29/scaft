@@ -2,8 +2,21 @@
 <html>
 	<head>
 		<title>Snippet App</title>
+		<link rel="stylesheet" href="css/style.min.css"/>
 	</head>
 	<body>
-		Welcome to snippet app
+		Welcome to snippet app Test
+		<!-- build:jsmin /app/ /dist/ js/test.min.js -->
+		<!-- inject:js -->
+		<script src="js/test.js"></script>
+		<script src="js/test2.js"></script>
+		<!-- endinject -->
+		<!-- /build -->
+
+		<!-- build:replace   -->
+		<script type='text/javascript' id="__bs_script__">//<![CDATA[
+		    document.write("<script async src='http://HOST:5050/browser-sync/browser-sync-client.2.11.1.js'><\/script>".replace("HOST", location.hostname));
+		//]]></script>
+		<!-- /build -->
 	</body>
 </html>
