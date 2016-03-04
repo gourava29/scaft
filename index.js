@@ -2,23 +2,16 @@
 var child_pro = require('child_process');
 	fs = require('fs'),
     path = require('path');
+    shell = require('./helpers/shellHelper')
 var currentWorkingDirectory = process.env.PWD
 
 
 var dirString = path.dirname(fs.realpathSync(__filename));
 console.log("copying project")
-child_pro.exec('cp -a '+dirString+'/sampleApp/. ./',{
-	cwd: currentWorkingDirectory
-},function(error,stdout,stderr){
-	if(!error){
-		console.log("project copied");
-		console.log("installing node_modules")
-		child_pro.exec('npm install',{
-			cwd: currentWorkingDirectory
-		},function(error,stdout,stderr){
-			if(!error){
-				console.log("node_modules installed")
-			}
-		});
-	}
-})
+shell.series([
+    'cp -a '+dirString+'/sampleApp/. ./',
+    'npm install -g gulp-cli',
+    'npm install'
+], function(err){
+   console.log('executed many commands in a row'); 
+});
