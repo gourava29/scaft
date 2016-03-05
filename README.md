@@ -7,7 +7,7 @@ SCAFT
 
   The complete solution for [node.js](http://nodejs.org) [API documentation](https://github.com/gourava29/scaft/)
 
-Scafolding Tool for faster WebApp Setup
+Scaffolding Tool for faster WebApp Setup
 
 ## Installation
 
