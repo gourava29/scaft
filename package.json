@@ -13,6 +13,15 @@
   "author": "gourava29",
   "license": "Apache-2.0",
   "bin": {
-    "snippet": "./index.js"
+    "scaft": "./index.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "gulp": "^3.9.1",
+    "gulp-change": "^1.0.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-copy": "0.0.2",
+    "gulp-rename": "^1.2.2",
+    "randomstring": "^1.1.4"
   }
 }

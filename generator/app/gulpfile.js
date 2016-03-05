@@ -38,8 +38,14 @@ gulp.task('inject',function(){
 	return target.pipe(inject(sources,{read: false, addRootSlash: false}), {relative: true}).pipe(gulp.dest('./app'));
 });
 
+gulp.task('assets:copy',function(){
+	gulp.src('./app/assets/**/*')
+               .pipe(processhtml())
+               .pipe(gulp.dest('./dist/assets'));
+});
+
 gulp.task('html:build',function(){
-	gulp.src('./app/index.html')
+	gulp.src('./app/**/*.html')
                .pipe(processhtml())
                .pipe(gulp.dest('./dist'));
 });
@@ -62,6 +68,8 @@ gulp.task('css:build', function(){
 
 
 
-gulp.task('build',['js:build','css:build','html:build']);
+gulp.task('build',['html:build','assets:copy']);
 
-gulp.task('default',['inject','watch','server']);
+gulp.task('serve',['watch','server']);
+
+gulp.task('default',['serve']);
