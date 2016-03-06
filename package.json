@@ -1,6 +1,6 @@
 {
   "name": "scaft",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Scaffolding tool for web development",
   "main": "index.js",
   "scripts": {
