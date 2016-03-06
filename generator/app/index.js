@@ -1,5 +1,6 @@
 var express = require('express');
 var app = new express();
+var colors = require('colors');
 
 app.use(express.static('./app/'));
 
@@ -9,6 +10,8 @@ app.get('/test',function(req,res){
 })
 
 app.listen('8080',function(){
-	console.log("listening on 8080")
+	console.log("-----------------------------------");
+	console.log("      App UI".red + ": http://localhost:8080".blue)
+	console.log("-----------------------------------");
 });
 

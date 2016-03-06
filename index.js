@@ -9,6 +9,7 @@ var child_pro = require('child_process');
     commander = require('commander');
     rename = require('gulp-rename');
     clean = require('gulp-clean');
+    nodetree = require('nodetree');
    	
 var currentWorkingDirectory = process.env.PWD
 
@@ -35,10 +36,12 @@ var setHtml = function(content, done){
 	replaceContent(content, done, 'HTML_TITLE');
 }
 
-gulp.task("setup", function(input){
-	gulp.src(path.join(dirString,'generator/app/**/*'))
+gulp.task("setup", function(cb){
+	console.log("Creating Templates");
+	var count = 0;
+	return gulp.src(path.join(dirString,'generator/app/**/*'))
 		.pipe(change(setTitle))
-		.pipe(gulp.dest('./'));
+		.pipe(gulp.dest('./'+process.argv[3]));
 });
 
 gulp.task("addjs", function(input){
@@ -77,16 +80,28 @@ gulp.task("addtemplate", function(input){
 
 gulp.task("remove", function(){
 	var sourceFileToRemove = path.join('app',process.argv[4]+"."+process.argv[3]);
+	console.log(sourceFileToRemove)
 	gulp.src(sourceFileToRemove, {read: false})
 	    .pipe(clean());
 });
 
-gulp.task("install_dependencies", function(){
+gulp.task("install_dependencies", ["setup"], function(){
+	nodetree('./'+process.argv[3], {
+	  all: false,
+	  directories: false,
+	  level: 4,
+	  prune: false,
+	  noreport: false
+	});
+	console.log("Templates created");
+	process.chdir(path.join(process.cwd(), process.argv[3]));
 	shell.series([
 	    'npm install -g gulp-cli',
 	    'npm install'
 	], function(err){
-	   console.log("dependencies installed");
+		if(err){
+			console.log(err);
+		}
 	});
 });
 
@@ -121,6 +136,10 @@ commander.version(process.env.npm_package_version)
 		 .option('-b, build', 'Build Project', build)
 
 commander.parse(process.argv);
-if (!process.argv.slice(2).length || !commander._events[process.argv[2]]) {
+var isValid = (commander.options.filter(function(item){
+	return ( item.short === process.argv[2] || item.long === process.argv[2] );
+}).length > 0);
+if ( !process.argv.slice(2).length || !isValid ) {
 	commander.outputHelp();
-}			
+}	
+

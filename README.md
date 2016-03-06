@@ -16,12 +16,11 @@ Scaffolding Tool for faster WebApp Setup
 ## Usage
 	
 #### Creating a project
-	1. mkdir <my-app>
-	2. cd <my-app>
-	3. scaft create <my-app-name>
+	scaft create <my-app>
 	
 #### Running Server
-	scaft serve
+	1. cd <my-app>
+	2. scaft serve
 *Note:*	By Default application will be served on port **8080**
 
 
