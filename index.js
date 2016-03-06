@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-var child_pro = require('child_process');
-	fs = require('fs'),
+var fs = require('fs'),
     path = require('path');
     shell = require('./helpers/shellHelper')
     gulp = require('gulp');

@@ -9,8 +9,9 @@
 exports.exec = function(cmd, cb){
     // this would be way easier on a shell/bash script :P
     var child_process = require('child_process');
-    var parts = cmd.split(/\s+/g);
-    var p = child_process.spawn(parts[0], parts.slice(1), {stdio: 'inherit'});
+    var isWin = process.env.windir;
+    
+    var p = child_process.spawn(isWin ? 'cmd' : 'sh', [isWin?'/c':'-c', cmd])
     p.on('exit', function(code){
         var err = null;
         if (code) {
