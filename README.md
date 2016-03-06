@@ -30,7 +30,7 @@ Scaffolding Tool for faster WebApp Setup
 #### Adding a file
 	scaft add <js|html|css|template> <file_name>
 
-#### Adding a file
+#### Removing a file
 	scaft remove <js|html|css|template> <file_name>
 
 
