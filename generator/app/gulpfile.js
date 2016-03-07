@@ -11,13 +11,13 @@ var nodemon = require('gulp-nodemon');
 
 gulp.task('watch', function(){
 
-	var files_to_watch = ['./app/js/**/*.js', './app/css/**/*.css'];
+	var files_to_watch = ['./app/js/**/*.js', './app/css/**/*.css', './app/**/*.html'];
 
 	browserSync.init({
 		port:5050
 	});
 	gulp.src(files_to_watch).pipe(watch(files_to_watch, function() {
-	    gulp.start('inject');
+	    // gulp.start('inject');
 	    browserSync.reload();
 	}));
 });

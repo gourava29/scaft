@@ -1,5 +1,5 @@
 {
-  "name": "sampleapp",
+  "name": "APP_NAME",
   "version": "1.0.0",
   "description": "Sample App to be installed when run snippet",
   "main": "index.js",
