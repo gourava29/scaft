@@ -21,7 +21,7 @@ Scaffolding Tool for faster WebApp Setup
 #### Running Server
 	1. cd <my-app>
 	2. scaft serve
-*Note:*	By Default application will be served on port **8080**
+*Note:*	Application URL will be available in the console.
 
 
 #### Buliding a project
