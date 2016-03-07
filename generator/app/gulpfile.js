@@ -9,6 +9,14 @@ var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 var nodemon = require('gulp-nodemon');
 
+var processhtmlOptions = {
+	customBlockTypes: [
+				path.join(__dirname, 'helpers/processhtml/jsmin.js'),
+				path.join(__dirname, 'helpers/processhtml/cssmin.js')
+	]
+};
+
+
 gulp.task('watch', function(){
 
 	var files_to_watch = ['./app/js/**/*.js', './app/css/**/*.css', './app/**/*.html'];
@@ -41,13 +49,13 @@ gulp.task('inject',function(){
 
 gulp.task('assets:copy',function(){
 	gulp.src('./app/assets/**/*')
-               .pipe(processhtml())
+               .pipe(processhtml(processhtmlOptions))
                .pipe(gulp.dest('./dist/assets'));
 });
 
 gulp.task('html:build',function(){
 	gulp.src('./app/**/*.html')
-               .pipe(processhtml())
+               .pipe(processhtml(processhtmlOptions))
                .pipe(gulp.dest('./dist'));
 });
 
