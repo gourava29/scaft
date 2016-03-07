@@ -14,7 +14,7 @@ gulp.task('watch', function(){
 	var files_to_watch = ['./app/js/**/*.js', './app/css/**/*.css', './app/**/*.html'];
 
 	browserSync.init({
-		port:5050
+		port:BROWSER_SYNC_PORT
 	});
 	gulp.src(files_to_watch).pipe(watch(files_to_watch, function() {
 	    // gulp.start('inject');
@@ -25,6 +25,7 @@ gulp.task('watch', function(){
 gulp.task('server', function () {
 	nodemon({
 		script: 'index.js',
+		args: ['--port', 'SERVER_PORT'],
 		watch: ['index.js']
 	}).on('start', function () {
 		

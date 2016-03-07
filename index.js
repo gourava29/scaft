@@ -9,6 +9,7 @@ var fs = require('fs'),
     rename = require('gulp-rename');
     clean = require('gulp-clean');
     nodetree = require('nodetree');
+    portfinder = require('portfinder');
    	
 var currentWorkingDirectory = process.env.PWD
 
@@ -27,6 +28,14 @@ var setTitle = function(content, done){
 	replaceContent(content, done, 'APP_NAME');
 };
 
+var setPorts = function(content, done){
+	portfinder.getPort(function(err, server_port){
+		content = content.replace(/SERVER_PORT/g, server_port)
+		content = content.replace(/BROWSER_SYNC_PORT/g, server_port+1);
+		done(null, content);	
+	});
+};
+
 var setJs = function(content, done){
 	replaceContent(content, done, 'JS_NAME');
 }
@@ -40,6 +49,7 @@ gulp.task("setup", function(cb){
 	var count = 0;
 	return gulp.src(path.join(dirString,'generator/app/**/*'))
 		.pipe(change(setTitle))
+		.pipe(change(setPorts))
 		.pipe(gulp.dest('./'+process.argv[3]));
 });
 

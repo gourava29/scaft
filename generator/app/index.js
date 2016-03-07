@@ -8,10 +8,10 @@ app.get('/test',function(req,res){
 	console.log(res,res);
 	res.send("Success");
 })
-
-app.listen('8080',function(){
+var port = process.argv[2] === '--port' ? process.argv[3] : 8080;
+app.listen(port,function(){
 	console.log("-----------------------------------");
-	console.log("      App UI".red + ": http://localhost:8080".blue)
+	console.log("      App UI".red + ": http://localhost:"+port.blue)
 	console.log("-----------------------------------");
 });
 
