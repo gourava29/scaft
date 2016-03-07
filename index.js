@@ -93,6 +93,7 @@ gulp.task("install_dependencies", ["setup"], function(){
 	  noreport: false
 	});
 	console.log("Templates created");
+	console.log("Installing Dependencies");
 	process.chdir(path.join(process.cwd(), process.argv[3]));
 	shell.series([
 	    'npm install -g gulp-cli',
@@ -101,6 +102,7 @@ gulp.task("install_dependencies", ["setup"], function(){
 		if(err){
 			console.log(err);
 		}
+		console.log("Dependencies Installed");
 	});
 });
 
