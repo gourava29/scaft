@@ -8,6 +8,7 @@ var minifyCSS = require('gulp-minify-css');
 var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 var nodemon = require('gulp-nodemon');
+var path = require('path');
 
 var processhtmlOptions = {
 	customBlockTypes: [
