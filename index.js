@@ -106,7 +106,6 @@ gulp.task("install_dependencies", ["setup"], function(){
 	console.log("Installing Dependencies");
 	process.chdir(path.join(process.cwd(), process.argv[3]));
 	shell.series([
-	    'npm install -g gulp-cli',
 	    'npm install'
 	], function(err){
 		if(err){
