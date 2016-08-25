@@ -12,7 +12,7 @@ exports.exec = function(cmd, cb){
     var isWin = process.env.windir;
     var parts = cmd.split(/\s+/g);
     var p = isWin 
-            ? child_process.spawn('cmd', ['/c', cmd]) 
+            ? child_process.spawn('cmd', ['/c', cmd], {stdio: 'inherit'}) 
             : child_process.spawn(parts[0], parts.slice(1), {stdio: 'inherit'});
     p.on('exit', function(code){
         var err = null;
